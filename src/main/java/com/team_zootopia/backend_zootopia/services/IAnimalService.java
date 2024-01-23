@@ -13,5 +13,6 @@ public interface IAnimalService {
     
   Animal findByName(String name);
   
+  Animal save(Animal animal);
      
   }

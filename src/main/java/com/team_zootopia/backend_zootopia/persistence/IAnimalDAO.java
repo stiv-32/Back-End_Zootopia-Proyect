@@ -15,4 +15,6 @@ public interface IAnimalDAO {
     
     
     Animal findByName(String name);
+
+    Animal save(Animal animal);
 } 

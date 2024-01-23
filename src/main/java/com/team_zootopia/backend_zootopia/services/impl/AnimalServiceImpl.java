@@ -31,4 +31,8 @@ public class AnimalServiceImpl implements IAnimalService {
        
         return animalDAO.findById(id);
     }
-}
+
+    @Override
+    public Animal save(Animal animal) {
+        return animalDAO.save(animal);
+    }}

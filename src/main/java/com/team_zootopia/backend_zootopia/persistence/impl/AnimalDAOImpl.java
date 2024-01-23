@@ -1,6 +1,7 @@
 package com.team_zootopia.backend_zootopia.persistence.impl;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Component;
 import com.team_zootopia.backend_zootopia.models.Animal;
 import com.team_zootopia.backend_zootopia.persistence.IAnimalDAO;
 import com.team_zootopia.backend_zootopia.repositories.AnimalRepository;
+
+import lombok.NonNull;
 
 @Component
 public class AnimalDAOImpl implements IAnimalDAO {
@@ -21,13 +24,26 @@ public class AnimalDAOImpl implements IAnimalDAO {
         return (List<Animal>) animalRepository.findAll();
     }
 
-    @Override
-    public Optional<Animal> findById(Long id) {
-        return animalRepository.findById(Long.valueOf(id));
-    }
+ @Override
+@NonNull
+public Optional<Animal> findById(Long id){
+    Objects.requireNonNull(id, "ID cannot be null");
+    return animalRepository.findById(id);
+}
+
+
+    
 
     @Override
     public Animal findByName(String name) {
-        return animalRepository.findByName(name);
+        return (Animal) animalRepository.findByName(name);
     }
+
+    @Override
+    public Animal save(Animal animal) {
+        Objects.requireNonNull(animal, "Animal cannot be null");
+        return (Animal) animalRepository.save(animal);
+    }
+
+   
 }
